@@ -3,6 +3,7 @@ import { getProject, getTasks } from "../../utils/api";
 import { useEffect, useState } from "react";
 import TaskTable from "../../components/Task";
 import { convertDate } from "../../utils/utils";
+import CreateTask from "../../components/CreateTask";
 
 export default function Project() {
   const { id } = useParams();
@@ -10,6 +11,7 @@ export default function Project() {
     project: {},
     loading: true,
     tasks: [],
+    showCreate: false,
   });
 
   useEffect(() => {
@@ -34,7 +36,11 @@ export default function Project() {
       ) : (
         <div className="flex flex-col p-5">
           <div className="flex justify-between">
-            <p className="text-lg font-semibold">{state.project.name}</p>
+            <div>
+              <p className="text-lg font-semibold">{state.project.name}</p>
+              <p>{state.project.description}</p>
+            </div>
+
             <div>
               <p>
                 {state.project.manager?.firstName +
@@ -46,10 +52,22 @@ export default function Project() {
           </div>
           <div className="flex justify-between mt-5">
             <p className="text-lg font-bold">Tasks</p>
-            <button className="bg-slate-200 p-2 rounded-md">Create Task</button>
+            <button
+              className="bg-slate-200 p-2 rounded-md"
+              onClick={() => {
+                setState((prev) => ({
+                  ...prev,
+                  showCreate: !state.showCreate,
+                }));
+              }}
+            >
+              {state.showCreate ? "Close" : "Create Task"}
+            </button>
           </div>
 
-          <TaskTable tasks={state.tasks} />
+          {state.showCreate && <CreateTask project={state.project} />}
+
+          <TaskTable tasksArray={state.tasks} />
         </div>
       )}
     </>

@@ -34,7 +34,7 @@ export default function ProjectList({ projects }) {
               {convertDate(project.startDate)}
             </td>
             <td className="border px-4 py-2">{convertDate(project.endDate)}</td>
-            <td className="border px-4 py-2 flex space-x-2">
+            <td className="border px-4 py-2">
               <input
                 type="checkbox"
                 name="isRunning"

@@ -25,3 +25,13 @@ export const createProject = async (project) => {
     return proj.data
 }
 
+export const createTask = async (task) => {
+    const res = await axios.post(`http://localhost:5000/tasks`, task)
+    return res.data
+}
+
+export const editTask = async (task) => {
+    const res = await axios.put(`http://localhost:5000/tasks/${task._id}`, task)
+    return res.data
+}
+
