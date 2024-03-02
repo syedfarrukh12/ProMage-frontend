@@ -9,7 +9,6 @@ export default function Navbar() {
         </NavLink>
         <div className="space-x-4">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/projects">Projects</NavLink>
         </div>
       </div>
     </div>

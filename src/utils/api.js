@@ -35,3 +35,9 @@ export const editTask = async (task) => {
     return res.data
 }
 
+
+export const updateProject = async (project) => {
+    const res = await axios.put(`http://localhost:5000/projects/${project._id}`, project)
+    return res.data
+}
+
